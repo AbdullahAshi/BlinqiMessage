@@ -34,8 +34,213 @@
             </objects>
             <point key="canvasLocation" x="20" y="93"/>
         </scene>
+        <!--Build Ice Cream View Controller-->
+        <scene sceneID="kyG-lV-pbV">
+            <objects>
+                <viewController storyboardIdentifier="BuildIceCreamViewController" id="gvt-rF-Bkv" customClass="BuildIceCreamViewController" customModule="IceCreamBuilderMessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kdh-Ql-ciV"/>
+                        <viewControllerLayoutGuide type="bottom" id="knQ-oF-Ex5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ItC-KT-xe7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prompt" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQE-bT-UvE">
+                                <rect key="frame" x="170" y="64" width="74" height="26.5"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.88235294119999996" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ez5-go-Rrh">
+                                <rect key="frame" x="0.0" y="348.5" width="414" height="199"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u2O-AA-qFg">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="XVi-O5-9zv"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9w1-vV-pDL" customClass="IceCreamPartCollectionViewLayout" customModule="IceCreamBuilderMessagesExtension" customModuleProvider="target">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IceCreamPartCell" id="saz-YW-At7" customClass="IceCreamPartCell" customModule="IceCreamBuilderMessagesExtension" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VAN-6o-GnK">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="VAN-6o-GnK" firstAttribute="leading" secondItem="saz-YW-At7" secondAttribute="leading" id="1dO-xN-EQR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="VAN-6o-GnK" secondAttribute="trailing" id="4ww-1y-qVt"/>
+                                                    <constraint firstItem="VAN-6o-GnK" firstAttribute="top" secondItem="saz-YW-At7" secondAttribute="top" id="SJ3-nd-MUj"/>
+                                                    <constraint firstAttribute="bottom" secondItem="VAN-6o-GnK" secondAttribute="bottom" id="uIA-C4-bdi"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="imageView" destination="VAN-6o-GnK" id="BbH-Oa-hl5"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="gvt-rF-Bkv" id="EJE-jQ-Gow"/>
+                                            <outlet property="delegate" destination="gvt-rF-Bkv" id="Hq2-mu-91w"/>
+                                        </connections>
+                                    </collectionView>
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="JU6-B5-0Q9" customClass="IceCreamView" customModule="IceCreamBuilderMessagesExtension" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="128" width="414" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="71" id="1IM-gu-MjV"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwM-KY-9SS">
+                                <rect key="frame" x="165.5" y="819" width="83" height="33"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="8" maxX="20" maxY="8"/>
+                                <state key="normal" title="Select"/>
+                                <connections>
+                                    <action selector="didTapSelect:" destination="gvt-rF-Bkv" eventType="touchUpInside" id="a4s-tt-3cB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ayM-L6-CMf"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.88235294119999996" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.81960784310000001" green="0.094117647060000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ez5-go-Rrh" firstAttribute="leading" secondItem="ItC-KT-xe7" secondAttribute="leading" id="939-Kn-Bjt"/>
+                            <constraint firstItem="VQE-bT-UvE" firstAttribute="centerX" secondItem="ItC-KT-xe7" secondAttribute="centerX" id="I45-m3-ch4"/>
+                            <constraint firstItem="VQE-bT-UvE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ItC-KT-xe7" secondAttribute="leadingMargin" id="P5X-K7-lQg"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="VQE-bT-UvE" secondAttribute="trailing" id="YHw-PX-P6A"/>
+                            <constraint firstItem="fwM-KY-9SS" firstAttribute="centerX" secondItem="ItC-KT-xe7" secondAttribute="centerX" id="Z1u-Xt-EwQ"/>
+                            <constraint firstItem="knQ-oF-Ex5" firstAttribute="top" secondItem="fwM-KY-9SS" secondAttribute="bottom" constant="10" id="a6h-ZG-2BJ"/>
+                            <constraint firstItem="VQE-bT-UvE" firstAttribute="top" secondItem="Kdh-Ql-ciV" secondAttribute="bottom" constant="20" id="dgp-i1-cPH"/>
+                            <constraint firstItem="Ez5-go-Rrh" firstAttribute="centerY" secondItem="ItC-KT-xe7" secondAttribute="centerY" id="hW2-sa-zDl"/>
+                            <constraint firstAttribute="trailing" secondItem="Ez5-go-Rrh" secondAttribute="trailing" id="oyc-Rd-lNv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="u2O-AA-qFg" id="nQx-FF-Hzi"/>
+                        <outlet property="collectionViewHeightConstraint" destination="XVi-O5-9zv" id="4eV-Um-AsI"/>
+                        <outlet property="iceCreamView" destination="JU6-B5-0Q9" id="f2J-pf-i7o"/>
+                        <outlet property="iceCreamViewHeightConstraint" destination="1IM-gu-MjV" id="zxb-Vm-Foz"/>
+                        <outlet property="promptLabel" destination="VQE-bT-UvE" id="z48-mm-xGy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hrV-eu-om7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="806" y="92"/>
+        </scene>
+        <!--Completed Ice Cream View Controller-->
+        <scene sceneID="R74-oO-RNL">
+            <objects>
+                <viewController storyboardIdentifier="CompletedIceCreamViewController" id="A1h-8I-z5g" customClass="CompletedIceCreamViewController" customModule="IceCreamBuilderMessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZfT-1J-fs6"/>
+                        <viewControllerLayoutGuide type="bottom" id="5JX-KG-zPC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xg9-pA-BAU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYv-t8-Cqj" customClass="MSStickerView">
+                                <rect key="frame" x="70" y="94" width="274" height="718"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qNF-bg-Dm0"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.88235294119999996" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="AYv-t8-Cqj" secondAttribute="trailing" constant="50" id="57A-k8-Ibh"/>
+                            <constraint firstItem="5JX-KG-zPC" firstAttribute="top" secondItem="AYv-t8-Cqj" secondAttribute="bottom" constant="50" id="GnJ-82-5XL"/>
+                            <constraint firstItem="AYv-t8-Cqj" firstAttribute="top" secondItem="ZfT-1J-fs6" secondAttribute="bottom" constant="50" id="IVT-Ob-Hrn"/>
+                            <constraint firstItem="AYv-t8-Cqj" firstAttribute="leading" secondItem="Xg9-pA-BAU" secondAttribute="leadingMargin" constant="50" id="ovE-wN-0Gh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="stickerView" destination="AYv-t8-Cqj" id="l7o-Ek-XDv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N2z-eG-vNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1558" y="92"/>
+        </scene>
+        <!--Ice Creams View Controller-->
+        <scene sceneID="Odw-ff-IgN">
+            <objects>
+                <collectionViewController storyboardIdentifier="IceCreamsViewController" id="zpK-rx-cey" customClass="IceCreamsViewController" customModule="IceCreamBuilderMessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="fxt-XU-sAf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.88235294119999996" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GU7-8h-tKE">
+                            <size key="itemSize" width="66" height="100"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IceCreamAddCell" id="lZh-pT-Ebl" customClass="IceCreamAddCell" customModule="IceCreamBuilderMessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="10" y="10" width="66" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="create" translatesAutoresizingMaskIntoConstraints="NO" id="h4x-of-kJB">
+                                            <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="h4x-of-kJB" firstAttribute="leading" secondItem="lZh-pT-Ebl" secondAttribute="leading" id="7bd-By-S5c"/>
+                                    <constraint firstAttribute="trailing" secondItem="h4x-of-kJB" secondAttribute="trailing" id="GLI-Bv-9F4"/>
+                                    <constraint firstAttribute="bottom" secondItem="h4x-of-kJB" secondAttribute="bottom" id="X7b-4Z-apr"/>
+                                    <constraint firstItem="h4x-of-kJB" firstAttribute="top" secondItem="lZh-pT-Ebl" secondAttribute="top" id="aaU-eZ-umP"/>
+                                </constraints>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IceCreamCell" id="bmq-Yz-h3g" customClass="IceCreamCell" customModule="IceCreamBuilderMessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="92" y="10" width="66" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N2q-br-f83" customClass="MSStickerView">
+                                            <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <connections>
+                                    <outlet property="stickerView" destination="N2q-br-f83" id="EzK-tu-EtD"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="zpK-rx-cey" id="908-47-NqS"/>
+                            <outlet property="delegate" destination="zpK-rx-cey" id="vYH-4G-Dhf"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Of-pt-TCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2270" y="92"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="create" width="66" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
