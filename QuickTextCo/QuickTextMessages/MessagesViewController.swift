@@ -8,12 +8,51 @@
 import UIKit
 import Messages
 
-class MessagesViewController: MSMessagesAppViewController {
+class MessagesViewController: MSMessagesAppViewController, IceCreamsViewControllerDelegate {
+    func iceCreamsViewControllerDidSelectAdd(_ controller: IceCreamsViewController) {
+        print("add selected")
+    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        iMessageService.shared.loadiMessage()
+    private func presentViewController(for conversation: MSConversation, with presentationStyle: MSMessagesAppPresentationStyle) {
+        // Remove any child view controllers that have been presented.
+        removeAllChildViewControllers()
+        
+        let controller: UIViewController = instantiateIceCreamsController()
+
+        addChild(controller)
+        controller.view.frame = view.bounds
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(controller.view)
+        
+        NSLayoutConstraint.activate([
+            controller.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            controller.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+            controller.view.topAnchor.constraint(equalTo: view.topAnchor),
+            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        
+        controller.didMove(toParent: self)
+    }
+
+private func instantiateIceCreamsController() -> UIViewController {
+    
+    let commonStoryboard = UIStoryboard.init(name: "common", bundle: nil)
+    guard let controller = commonStoryboard.instantiateViewController(withIdentifier: IceCreamsViewController.storyboardIdentifier)
+        as? IceCreamsViewController
+        else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
+    
+    controller.delegate = self
+    
+    return controller
+}
+    
+    
+    private func removeAllChildViewControllers() {
+        for child in children {
+            child.willMove(toParent: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParent()
+        }
     }
     
     // MARK: - Conversation Handling
@@ -23,6 +62,7 @@ class MessagesViewController: MSMessagesAppViewController {
         // This will happen when the extension is about to present UI.
         
         // Use this method to configure the extension and restore previously stored state.
+        presentViewController(for: conversation, with: presentationStyle)
     }
     
     override func didResignActive(with conversation: MSConversation) {

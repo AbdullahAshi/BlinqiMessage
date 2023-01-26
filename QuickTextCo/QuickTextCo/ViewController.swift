@@ -109,6 +109,7 @@ class ViewController: UIViewController, IceCreamsViewControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         presentViewController(for: conversation, with: MSMessagesAppPresentationStyle.compact)
+        //presentViewController(for: conversation, with: MSMessagesAppPresentationStyle.expanded)
     }
     
     override func didReceiveMemoryWarning() {
