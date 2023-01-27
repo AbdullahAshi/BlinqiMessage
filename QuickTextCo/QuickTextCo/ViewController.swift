@@ -13,7 +13,7 @@ import MessageUI
 //class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate {
 class ViewController: UIViewController, IceCreamsViewControllerDelegate{
     func iceCreamsViewControllerDidSelectAdd(_ controller: IceCreamsViewController) {
-        print("selected")
+        presentViewController(for: conversation, with: MSMessagesAppPresentationStyle.expanded)
     }
     
     
@@ -29,7 +29,8 @@ class ViewController: UIViewController, IceCreamsViewControllerDelegate{
     }
     
     private func instantiateBuildIceCreamController(with iceCream: IceCream) -> UIViewController {
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: BuildIceCreamViewController.storyboardIdentifier)
+        let commonStoryboard = UIStoryboard.init(name: "common", bundle: nil)
+        guard let controller = commonStoryboard.instantiateViewController(withIdentifier: BuildIceCreamViewController.storyboardIdentifier)
             as? BuildIceCreamViewController
             else { fatalError("Unable to instantiate a BuildIceCreamViewController from the storyboard") }
         
@@ -48,7 +49,8 @@ class ViewController: UIViewController, IceCreamsViewControllerDelegate{
     }
     
     private func instantiateIceCreamsController() -> UIViewController {
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: IceCreamsViewController.storyboardIdentifier)
+        let commonStoryboard = UIStoryboard.init(name: "common", bundle: nil)
+        guard let controller = commonStoryboard.instantiateViewController(withIdentifier: IceCreamsViewController.storyboardIdentifier)
             as? IceCreamsViewController
             else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
         
@@ -61,7 +63,8 @@ class ViewController: UIViewController, IceCreamsViewControllerDelegate{
     
     private func instantiateCompletedIceCreamController(with iceCream: IceCream) -> UIViewController {
         // Instantiate a `BuildIceCreamViewController`.
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: CompletedIceCreamViewController.storyboardIdentifier)
+        let commonStoryboard = UIStoryboard.init(name: "common", bundle: nil)
+        guard let controller = commonStoryboard.instantiateViewController(withIdentifier: CompletedIceCreamViewController.storyboardIdentifier)
             as? CompletedIceCreamViewController
             else { fatalError("Unable to instantiate a CompletedIceCreamViewController from the storyboard") }
         
