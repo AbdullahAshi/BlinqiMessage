@@ -59,7 +59,11 @@ class BuildIceCreamViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.reload()
         
+    }
+    
+    func reload() {
         // Make sure the prompt and ice cream view are showing the correct information.
         promptLabel.text = prompt
         iceCreamView.iceCream = iceCream

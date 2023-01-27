@@ -239,8 +239,10 @@ extension ViewController: BuildIceCreamViewControllerDelegate {
             history.save()
             self.navigationController?.popViewController(animated: true)
         } else {
-            self.navigationController?.popViewController(animated: true)
-            self.presentViewController(iceCream: iceCream)
+//            self.navigationController?.popViewController(animated: true)
+//            self.presentViewController(iceCream: iceCream)
+            controller.iceCream = iceCream
+            controller.reload()
         }
         
         //dismiss()
