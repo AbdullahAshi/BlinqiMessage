@@ -9,6 +9,10 @@ import UIKit
 import Messages
 
 class MessagesViewController: MSMessagesAppViewController, IceCreamsViewControllerDelegate {
+    func iceCreamsViewControllerDidSelectIceCream(_ iceCream: IceCream) {
+        print("iceCream selected")
+    }
+    
     func iceCreamsViewControllerDidSelectAdd(_ controller: IceCreamsViewController) {
         print("add selected")
     }

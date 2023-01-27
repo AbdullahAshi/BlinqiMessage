@@ -68,9 +68,8 @@ class IceCreamsViewController: UICollectionViewController {
         switch item {
         case .create:
             delegate?.iceCreamsViewControllerDidSelectAdd(self)
-            
-        default:
-            break
+        case .iceCream(let iceCream):
+            delegate?.iceCreamsViewControllerDidSelectIceCream(iceCream)
         }
     }
     
@@ -113,4 +112,5 @@ protocol IceCreamsViewControllerDelegate: AnyObject {
     /// Called when a user choses to add a new `IceCream` in the `IceCreamsViewController`.
 
     func iceCreamsViewControllerDidSelectAdd(_ controller: IceCreamsViewController)
+    func iceCreamsViewControllerDidSelectIceCream(_ iceCream: IceCream)
 }

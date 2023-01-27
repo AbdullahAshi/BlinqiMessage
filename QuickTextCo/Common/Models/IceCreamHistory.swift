@@ -50,10 +50,10 @@ struct IceCreamHistory {
         
         // If no ice creams have been loaded, create some tasty examples.
         if iceCreams.isEmpty {
-            iceCreams.append(IceCream(base: .base01, scoops: .scoops01, topping: .topping01))
-            iceCreams.append(IceCream(base: .base02, scoops: .scoops02, topping: .topping02))
-            iceCreams.append(IceCream(base: .base03, scoops: .scoops03, topping: .topping03))
-            iceCreams.append(IceCream(base: .base04, scoops: .scoops04, topping: .topping04))
+//            iceCreams.append(IceCream(base: .base01, scoops: .scoops01, topping: .topping01))
+//            iceCreams.append(IceCream(base: .base02, scoops: .scoops02, topping: .topping02))
+//            iceCreams.append(IceCream(base: .base03, scoops: .scoops03, topping: .topping03))
+//            iceCreams.append(IceCream(base: .base04, scoops: .scoops04, topping: .topping04))
             
             let historyToSave = IceCreamHistory(iceCreams: iceCreams)
             historyToSave.save()

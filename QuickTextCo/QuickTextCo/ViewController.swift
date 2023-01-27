@@ -10,10 +10,30 @@ import Messages
 import iMessageExt
 import MessageUI
 
-//class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate {
-class ViewController: UIViewController, IceCreamsViewControllerDelegate{
+class ViewController: UIViewController, IceCreamsViewControllerDelegate {
+    
+    var message: MSMessage {
+        let msgLayout = MSMessageTemplateLayout()
+        msgLayout.caption = "something here"
+        let message = MSMessage()
+        message.layout = msgLayout
+        return message
+    }
+    
+    var iceCream: IceCream?
+    
+    
     func iceCreamsViewControllerDidSelectAdd(_ controller: IceCreamsViewController) {
-        presentViewController(for: conversation, with: MSMessagesAppPresentationStyle.expanded)
+//        guard let iceCream = iceCream else {
+//            return
+//        }
+
+        presentViewController(iceCream: iceCream)
+    }
+    
+    func iceCreamsViewControllerDidSelectIceCream(_ iceCream: IceCream) {
+        self.iceCream = iceCream
+        presentViewController(iceCream: iceCream)
     }
     
     
@@ -73,45 +93,44 @@ class ViewController: UIViewController, IceCreamsViewControllerDelegate{
         return controller
     }
     
-    private func presentViewController(for conversation: MSConversation, with presentationStyle: MSMessagesAppPresentationStyle) {
+    private func presentViewController(iceCream: IceCream?) {
         // Remove any child view controllers that have been presented.
         removeAllChildViewControllers()
         
         let controller: UIViewController
-        if presentationStyle == .compact {
-            // Show a list of previously created ice creams.
-            controller = instantiateIceCreamsController()
-        } else {
-             // Parse an `IceCream` from the conversation's `selectedMessage` or create a new `IceCream`.
-            let iceCream = IceCream(message: message) ?? IceCream()
+        if let iceCream = iceCream {
+            // Parse an `IceCream` from the conversation's `selectedMessage` or create a new `IceCream`.
+           //let iceCream = IceCream(message: message) ?? IceCream()
 
-            // Show either the in process construction process or the completed ice cream.
-            if iceCream.isComplete {
-                controller = instantiateCompletedIceCreamController(with: iceCream)
-            } else {
-                controller = instantiateBuildIceCreamController(with: iceCream)
-            }
+           // Show either the in process construction process or the completed ice cream.
+           if iceCream.isComplete {
+               controller = instantiateCompletedIceCreamController(with: iceCream)
+           } else {
+               controller = instantiateBuildIceCreamController(with: iceCream)
+           }
+        } else {
+            controller = instantiateBuildIceCreamController(with: IceCream())
         }
 
-        addChild(controller)
-        controller.view.frame = view.bounds
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(controller.view)
-        
-        NSLayoutConstraint.activate([
-            controller.view.leftAnchor.constraint(equalTo: view.leftAnchor),
-            controller.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-            controller.view.topAnchor.constraint(equalTo: view.topAnchor),
-            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
-        
-        controller.didMove(toParent: self)
+
+//        addChild(controller)
+//        controller.view.frame = view.bounds
+//        controller.view.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(controller.view)
+//
+//        NSLayoutConstraint.activate([
+//            controller.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+//            controller.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+//            controller.view.topAnchor.constraint(equalTo: view.topAnchor),
+//            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//            ])
+//
+//        controller.didMove(toParent: self)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
-    var conversation: MSConversation = MSConversation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presentViewController(for: conversation, with: MSMessagesAppPresentationStyle.compact)
         //presentViewController(for: conversation, with: MSMessagesAppPresentationStyle.expanded)
     }
     
@@ -134,7 +153,15 @@ class ViewController: UIViewController, IceCreamsViewControllerDelegate{
 //        }
 //
 //        self.present(composeVC, animated: true, completion: nil)
-        displayMessageInterface()
+        
+        
+        //displayMessageInterface()
+        
+        //presentViewController(for: conversation, with: MSMessagesAppPresentationStyle.compact)
+        //presentViewController(iceCream: nil)
+    
+        self.navigationController?.pushViewController(instantiateIceCreamsController(), animated: true)
+        
     }
     
     func displayMessageInterface() {
@@ -194,32 +221,28 @@ extension ViewController: BuildIceCreamViewControllerDelegate {
         }
 
         // Create a new message with the same session as any currently selected message.
-        let message = composeMessage(with: iceCream, caption: messageCaption, session: conversation.selectedMessage?.session)
+        let message = composeMessage(with: iceCream, caption: messageCaption, session: nil)
 
         
         
         // Add the message to the conversation.
-        conversation.insert(message) { error in
-            if let error = error {
-                print(error)
-            }
-        }
+//        conversation.insert(message) { error in
+//            if let error = error {
+//                print(error)
+//            }
+//        }
 
         // If the ice cream is complete, save it in the history.
-//        if iceCream.isComplete {
+        if iceCream.isComplete {
             var history = IceCreamHistory.load()
             history.append(iceCream)
             history.save()
-//        }
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+            self.presentViewController(iceCream: iceCream)
+        }
         
         //dismiss()
-    }
-    
-    var message: MSMessage {
-        let msgLayout = MSMessageTemplateLayout()
-        msgLayout.caption = "something here"
-        let message = MSMessage()
-        message.layout = msgLayout
-        return message
     }
 }
