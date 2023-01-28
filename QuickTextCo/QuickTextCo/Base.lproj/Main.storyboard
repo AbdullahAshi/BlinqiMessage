@@ -35,6 +35,16 @@
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="92.410714285714278"/>
         </scene>
+        <!--IceCreamsViewController-->
+        <scene sceneID="33T-2g-cnF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="common" referencedIdentifier="IceCreamsViewController" id="qfB-1v-hN9" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ZXj-EK-Sfe"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nZF-4m-HB2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1739" y="-169"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wch-Rn-MLA">
             <objects>
@@ -46,7 +56,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="hDr-JR-WYb"/>
+                        <segue destination="qfB-1v-hN9" kind="relationship" relationship="rootViewController" id="1Sc-tR-Xrg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O2J-iN-sgM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

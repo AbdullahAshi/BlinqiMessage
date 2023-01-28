@@ -23,7 +23,7 @@ class IceCreamsViewController: UICollectionViewController {
     
     weak var delegate: IceCreamsViewControllerDelegate?
 
-    private let items: [CollectionViewItem]
+    private var items: [CollectionViewItem] = []
     
     private let stickerCache = IceCreamStickerCache.cache
     
@@ -31,6 +31,11 @@ class IceCreamsViewController: UICollectionViewController {
     
     required init?(coder aDecoder: NSCoder) {
         // Map the previously completed ice creams to an array of `CollectionViewItem`s.
+        super.init(coder: aDecoder)
+        self.reload()
+    }
+    
+    private func reload() {
         let reversedHistory = IceCreamHistory.load().reversed()
         var items: [CollectionViewItem] = reversedHistory.map { .iceCream($0) }
         
@@ -38,7 +43,11 @@ class IceCreamsViewController: UICollectionViewController {
         items.insert(.create, at: 0)
         
         self.items = items
-        super.init(coder: aDecoder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        reload()
     }
 
     // MARK: UICollectionViewDataSource
