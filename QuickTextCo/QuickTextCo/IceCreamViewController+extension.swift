@@ -86,6 +86,8 @@ extension IceCreamsViewController: BuildIceCreamViewControllerDelegate {
             history.append(iceCream)
             history.save()
             self.navigationController?.popViewController(animated: true)
+            self.reload()
+            self.collectionView.reloadData()
         } else {
 //            self.navigationController?.popViewController(animated: true)
 //            self.presentViewController(iceCream: iceCream)

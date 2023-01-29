@@ -59,7 +59,7 @@ class IceCreamsViewController: UICollectionViewController {
         self.reload()
     }
     
-    private func reload() {
+    func reload() {
         let reversedHistory = IceCreamHistory.load().reversed()
         var items: [CollectionViewItem] = reversedHistory.map { .iceCream($0) }
         
