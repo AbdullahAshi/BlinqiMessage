@@ -13,14 +13,8 @@ import MessageUI
 extension IceCreamsViewController: BuildIceCreamViewControllerDelegate {
     
     private func presentViewController(iceCream: IceCream?) {
-        // Remove any child view controllers that have been presented.
-        
         let controller: UIViewController
         if let iceCream = iceCream {
-            // Parse an `IceCream` from the conversation's `selectedMessage` or create a new `IceCream`.
-           //let iceCream = IceCream(message: message) ?? IceCream()
-
-           // Show either the in process construction process or the completed ice cream.
            if iceCream.isComplete {
                controller = instantiateCompletedIceCreamController(with: iceCream)
            } else {
@@ -50,7 +44,6 @@ extension IceCreamsViewController: BuildIceCreamViewControllerDelegate {
 
     /// - Tag: InsertMessageInConversation
     func buildIceCreamViewController(_ controller: BuildIceCreamViewController, didSelect iceCreamPart: IceCreamPart) {
-//        guard let conversation = activeConversation else { fatalError("Expected a conversation") }
         guard var iceCream = controller.iceCream else { fatalError("Expected the controller to be displaying an ice cream") }
 
         // Update the ice cream with the selected body part and determine a caption and description of the change.
@@ -68,18 +61,6 @@ extension IceCreamsViewController: BuildIceCreamViewControllerDelegate {
             fatalError("Unexpected type of ice cream part selected.")
         }
 
-        // Create a new message with the same session as any currently selected message.
-        let message = composeMessage(with: iceCream, caption: messageCaption, session: nil)
-
-        
-        
-        // Add the message to the conversation.
-//        conversation.insert(message) { error in
-//            if let error = error {
-//                print(error)
-//            }
-//        }
-
         // If the ice cream is complete, save it in the history.
         if iceCream.isComplete {
             var history = IceCreamHistory.load()
@@ -89,13 +70,9 @@ extension IceCreamsViewController: BuildIceCreamViewControllerDelegate {
             self.reload()
             self.collectionView.reloadData()
         } else {
-//            self.navigationController?.popViewController(animated: true)
-//            self.presentViewController(iceCream: iceCream)
             controller.iceCream = iceCream
             controller.reload()
         }
-        
-        //dismiss()
     }
     
     func instantiateBuildIceCreamController(with iceCream: IceCream) -> UIViewController {

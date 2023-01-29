@@ -24,18 +24,6 @@ class IceCreamsViewController: UICollectionViewController {
     
     var delegate: IceCreamsViewControllerDelegate?
     
-//    func iceCreamsViewControllerDidSelectAdd() {
-//        delegate?.iceCreamsViewControllerDidSelectAdd()
-//    }
-//
-//    func iceCreamsViewControllerDidSelectIceCream(_ iceCream: IceCream) {
-//        self.iceCream = iceCream
-//        delegate?.iceCreamsViewControllerDidSelectIceCream(iceCream)
-//    }
-    
-
-    
-
     /// An enumeration that represents an item in the collection view.
 
     enum CollectionViewItem {
@@ -100,10 +88,8 @@ class IceCreamsViewController: UICollectionViewController {
         
         switch item {
         case .create:
-            //iceCreamsViewControllerDidSelectAdd()
             delegate?.iceCreamsViewControllerDidSelectAdd()
         case .iceCream(let iceCream):
-            //iceCreamsViewControllerDidSelectIceCream(iceCream)
             delegate?.iceCreamsViewControllerDidSelectIceCream(iceCream)
         }
     }
@@ -139,74 +125,6 @@ class IceCreamsViewController: UICollectionViewController {
         return cell
     }
 }
-
-//extension IceCreamsViewController: BuildIceCreamViewControllerDelegate {
-//    
-//    /// - Tag: ComposeMessage
-//    fileprivate func composeMessage(with iceCream: IceCream, caption: String, session: MSSession? = nil) -> MSMessage {
-//        var components = URLComponents()
-//        components.queryItems = iceCream.queryItems
-//        
-//        let layout = MSMessageTemplateLayout()
-//        layout.image = iceCream.renderSticker(opaque: true)
-//        layout.caption = caption
-//        
-//        let message = MSMessage(session: session ?? MSSession())
-//        message.url = components.url!
-//        message.layout = layout
-//        
-//        return message
-//    }
-//
-//    /// - Tag: InsertMessageInConversation
-//    func buildIceCreamViewController(_ controller: BuildIceCreamViewController, didSelect iceCreamPart: IceCreamPart) {
-////        guard let conversation = activeConversation else { fatalError("Expected a conversation") }
-//        guard var iceCream = controller.iceCream else { fatalError("Expected the controller to be displaying an ice cream") }
-//
-//        // Update the ice cream with the selected body part and determine a caption and description of the change.
-//        var messageCaption: String
-//        if let base = iceCreamPart as? Base {
-//            iceCream.base = base
-//            messageCaption = NSLocalizedString("Let's build an ice cream", comment: "")
-//        } else if let scoops = iceCreamPart as? Scoops {
-//            iceCream.scoops = scoops
-//            messageCaption = NSLocalizedString("I added some scoops", comment: "")
-//        } else if let topping = iceCreamPart as? Topping {
-//            iceCream.topping = topping
-//            messageCaption = NSLocalizedString("Our finished ice cream", comment: "")
-//        } else {
-//            fatalError("Unexpected type of ice cream part selected.")
-//        }
-//
-//        // Create a new message with the same session as any currently selected message.
-//        let message = composeMessage(with: iceCream, caption: messageCaption, session: nil)
-//
-//        
-//        
-//        // Add the message to the conversation.
-////        conversation.insert(message) { error in
-////            if let error = error {
-////                print(error)
-////            }
-////        }
-//
-//        // If the ice cream is complete, save it in the history.
-//        if iceCream.isComplete {
-//            var history = IceCreamHistory.load()
-//            history.append(iceCream)
-//            history.save()
-//            self.navigationController?.popViewController(animated: true)
-//        } else {
-////            self.navigationController?.popViewController(animated: true)
-////            self.presentViewController(iceCream: iceCream)
-//            controller.iceCream = iceCream
-//            controller.reload()
-//        }
-//        
-//        //dismiss()
-//    }
-//}
-
 
 // A delegate protocol for the `IceCreamsViewController` class
 

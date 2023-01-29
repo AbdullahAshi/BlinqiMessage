@@ -11,7 +11,6 @@ import UIKit
 class MessageBuilderViewController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
-            //presentViewController(for: conversation, with: MSMessagesAppPresentationStyle.expanded)
             
             let controller: UIViewController = instantiateIceCreamsController()
 
@@ -43,69 +42,3 @@ class MessageBuilderViewController: UIViewController {
     }
     
 }
-//    
-//    
-//    
-//    
-//
-//    
-//    
-//    //    override func viewDidLoad() {
-//    //        super.viewDidLoad()
-//    //        // Do any additional setup after loading the view.
-//    //        let message = MSMessage()
-//    ////        let vc = MessagesViewController()
-//    //        iMessageService.shared.saveiMessage([])
-//    //    }
-//    
-////    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-//    }
-//    
-//
-//    
-//    
-//    
-//
-//    
-//    
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        //presentViewController(for: conversation, with: MSMessagesAppPresentationStyle.expanded)
-//    }
-//    
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//    }
-//    
-//    @IBAction func onTouchUp(_ sender: AnyObject) {
-////        let composeVC = MFMessageComposeViewController()
-////        composeVC.delegate = self
-////        let msgLayout = MSMessageTemplateLayout()
-////        msgLayout.caption = "something here"
-////        let message = MSMessage()
-////        message.layout = msgLayout
-////        composeVC.message = message
-////
-////        guard MFMessageComposeViewController.canSendText() else {
-////            print("Mail services are not available")
-////            return
-////        }
-////
-////        self.present(composeVC, animated: true, completion: nil)
-//        
-//        
-//        //displayMessageInterface()
-//        
-//        //presentViewController(for: conversation, with: MSMessagesAppPresentationStyle.compact)
-//        //presentViewController(iceCream: nil)
-//    
-//        self.navigationController?.pushViewController(instantiateIceCreamsController(), animated: true)
-//        
-//    }
-//    
-//    
-//    
-//}
-//
-//
