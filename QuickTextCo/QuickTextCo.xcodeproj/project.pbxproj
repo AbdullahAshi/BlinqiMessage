@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		88F2137C297AD1FC0057067B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2137B297AD1FC0057067B /* AppDelegate.swift */; };
 		88F2137E297AD1FC0057067B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2137D297AD1FC0057067B /* SceneDelegate.swift */; };
-		88F21380297AD1FC0057067B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2137F297AD1FC0057067B /* ViewController.swift */; };
+		88F21380297AD1FC0057067B /* MessageBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2137F297AD1FC0057067B /* MessageBuilderViewController.swift */; };
 		88F21383297AD1FC0057067B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F21381297AD1FC0057067B /* Main.storyboard */; };
 		88F21385297AD1FF0057067B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88F21384297AD1FF0057067B /* Assets.xcassets */; };
 		88F21388297AD1FF0057067B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F21386297AD1FF0057067B /* LaunchScreen.storyboard */; };
@@ -106,6 +106,7 @@
 		88F2146F29820AC30057067B /* topping05_sticker.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F2142C29802D350057067B /* topping05_sticker.png */; };
 		88F2147029820AC30057067B /* topping02_sticker.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F2142829802D350057067B /* topping02_sticker.png */; };
 		88F2147129820AC30057067B /* sticker_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F2142029802D350057067B /* sticker_placeholder.png */; };
+		88F214742984BDF70057067B /* IceCreamViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F214732984BDF70057067B /* IceCreamViewController+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,7 +169,7 @@
 		88F21378297AD1FC0057067B /* QuickTextCo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTextCo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F2137B297AD1FC0057067B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88F2137D297AD1FC0057067B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		88F2137F297AD1FC0057067B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88F2137F297AD1FC0057067B /* MessageBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBuilderViewController.swift; sourceTree = "<group>"; };
 		88F21382297AD1FC0057067B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88F21384297AD1FF0057067B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88F21387297AD1FF0057067B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -231,6 +232,7 @@
 		88F2142C29802D350057067B /* topping05_sticker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topping05_sticker.png; sourceTree = "<group>"; };
 		88F2142D29802D350057067B /* topping12_sticker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topping12_sticker.png; sourceTree = "<group>"; };
 		88F21454298209240057067B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = QuickTextCo/Base.lproj/common.storyboard; sourceTree = "<group>"; };
+		88F214732984BDF70057067B /* IceCreamViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IceCreamViewController+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,18 +305,19 @@
 		88F2137A297AD1FC0057067B /* QuickTextCo */ = {
 			isa = PBXGroup;
 			children = (
+				88F2140429801D820057067B /* BuildIceCreamViewController.swift */,
 				88F2140E298020CE0057067B /* CompletedIceCreamViewController.swift */,
 				88F2140C29801E3D0057067B /* IceCreamPartCollectionViewLayout.swift */,
 				88F2140A29801E120057067B /* IceCreamView.swift */,
-				88F2140429801D820057067B /* BuildIceCreamViewController.swift */,
 				88F213D8297CCED30057067B /* QuickTextCo.entitlements */,
 				88F2137B297AD1FC0057067B /* AppDelegate.swift */,
 				88F2137D297AD1FC0057067B /* SceneDelegate.swift */,
-				88F2137F297AD1FC0057067B /* ViewController.swift */,
+				88F2137F297AD1FC0057067B /* MessageBuilderViewController.swift */,
 				88F21381297AD1FC0057067B /* Main.storyboard */,
 				88F21384297AD1FF0057067B /* Assets.xcassets */,
 				88F21386297AD1FF0057067B /* LaunchScreen.storyboard */,
 				88F21389297AD1FF0057067B /* Info.plist */,
+				88F214732984BDF70057067B /* IceCreamViewController+extension.swift */,
 			);
 			path = QuickTextCo;
 			sourceTree = "<group>";
@@ -688,7 +691,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88F21380297AD1FC0057067B /* ViewController.swift in Sources */,
+				88F214742984BDF70057067B /* IceCreamViewController+extension.swift in Sources */,
+				88F21380297AD1FC0057067B /* MessageBuilderViewController.swift in Sources */,
 				88F2140B29801E120057067B /* IceCreamView.swift in Sources */,
 				88F213F229801BB90057067B /* IceCreamsViewController.swift in Sources */,
 				88F2140D29801E3D0057067B /* IceCreamPartCollectionViewLayout.swift in Sources */,

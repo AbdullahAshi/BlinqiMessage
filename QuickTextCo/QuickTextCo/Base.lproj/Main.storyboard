@@ -8,24 +8,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Message Builder View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="QuickTextCo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MessageBuilderViewController" customModule="QuickTextCo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faw-Md-28W">
-                                <rect key="frame" x="174" y="433" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="onTouchUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KfU-X0-0bD"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -34,16 +23,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="92.410714285714278"/>
-        </scene>
-        <!--IceCreamsViewController-->
-        <scene sceneID="33T-2g-cnF">
-            <objects>
-                <viewControllerPlaceholder storyboardName="common" referencedIdentifier="IceCreamsViewController" id="qfB-1v-hN9" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="ZXj-EK-Sfe"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nZF-4m-HB2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1739" y="-169"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wch-Rn-MLA">
@@ -56,7 +35,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="qfB-1v-hN9" kind="relationship" relationship="rootViewController" id="1Sc-tR-Xrg"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="0FC-cN-tv7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O2J-iN-sgM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

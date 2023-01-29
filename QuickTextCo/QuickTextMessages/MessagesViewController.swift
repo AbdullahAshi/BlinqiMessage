@@ -8,14 +8,14 @@
 import UIKit
 import Messages
 
-class MessagesViewController: MSMessagesAppViewController, IceCreamsViewControllerDelegate {
-    func iceCreamsViewControllerDidSelectIceCream(_ iceCream: IceCream) {
-        print("iceCream selected")
-    }
+class MessagesViewController: MSMessagesAppViewController { //, IceCreamsViewControllerDelegate {
+//    func iceCreamsViewControllerDidSelectIceCream(_ iceCream: IceCream) {
+//        print("iceCream selected")
+//    }
     
-    func iceCreamsViewControllerDidSelectAdd(_ controller: IceCreamsViewController) {
-        print("add selected")
-    }
+//    func iceCreamsViewControllerDidSelectAdd(_ controller: IceCreamsViewController) {
+//        print("add selected")
+//    }
     
     private func presentViewController(for conversation: MSConversation, with presentationStyle: MSMessagesAppPresentationStyle) {
         // Remove any child view controllers that have been presented.
@@ -45,7 +45,7 @@ private func instantiateIceCreamsController() -> UIViewController {
         as? IceCreamsViewController
         else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
     
-    controller.delegate = self
+//    controller.delegate = self
     
     return controller
 }
