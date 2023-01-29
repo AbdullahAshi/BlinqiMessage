@@ -52,7 +52,9 @@ class IceCreamsViewController: UICollectionViewController {
         var items: [CollectionViewItem] = reversedHistory.map { .iceCream($0) }
         
         // Add `CollectionViewItem` that the user can tap to start building a new ice cream.
-        items.insert(.create, at: 0)
+        if (ProcessInfo.processInfo.environment["isMainApp"] ?? "NO") == "YES" {
+            items.insert(.create, at: 0)
+        }
         
         self.items = items
     }
