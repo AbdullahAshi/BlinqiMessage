@@ -7,7 +7,13 @@ A struct that persists a history of ice creams to `UserDefaults`.
 
 import Foundation
 
-struct IceCreamHistory {
+protocol IceCreamHistoryProtocol {
+    var iceCreams: [IceCream] { get }
+    func save()
+    func append(_ iceCream: IceCream)
+}
+
+class IceCreamHistory: IceCreamHistoryProtocol {
 
     // MARK: Properties
     
@@ -16,25 +22,26 @@ struct IceCreamHistory {
     private static let userDefaultsKey = "iceCreams"
     
     /// An array of previously created `IceCream`s.
-    fileprivate var iceCreams: [IceCream]
+    private(set) var iceCreams: [IceCream]
 
-    var count: Int {
+    private var count: Int {
         return iceCreams.count
     }
 
-    subscript(index: Int) -> IceCream {
+    private subscript(index: Int) -> IceCream {
         return iceCreams[index]
     }
     
+    static let shared: IceCreamHistory = IceCreamHistory()
+    
     // MARK: Initialization
     
-    /// `IceCreamHistory`'s initializer is marked as private. Instead instances should be loaded via the `load` method.
-    private init(iceCreams: [IceCream]) {
-        self.iceCreams = iceCreams
+    private init() {
+        iceCreams = IceCreamHistory.load()
     }
 
     /// Loads previously created `IceCream`s and returns a `IceCreamHistory` instance.
-    static func load() -> IceCreamHistory {
+    private static func load() -> [IceCream] {
         var iceCreams = [IceCream]()
         let defaults = UserDefaults(suiteName: "group.com.ashiTest.QuickTextCo")!
         
@@ -47,19 +54,7 @@ struct IceCreamHistory {
                 return IceCream(queryItems: queryItems)
             }
         }
-        
-        // If no ice creams have been loaded, create some tasty examples.
-        if iceCreams.isEmpty {
-//            iceCreams.append(IceCream(base: .base01, scoops: .scoops01, topping: .topping01))
-//            iceCreams.append(IceCream(base: .base02, scoops: .scoops02, topping: .topping02))
-//            iceCreams.append(IceCream(base: .base03, scoops: .scoops03, topping: .topping03))
-//            iceCreams.append(IceCream(base: .base04, scoops: .scoops04, topping: .topping04))
-            
-            let historyToSave = IceCreamHistory(iceCreams: iceCreams)
-            historyToSave.save()
-        }
-        
-        return IceCreamHistory(iceCreams: iceCreams)
+        return iceCreams
     }
     
     /// Saves the history.
@@ -79,11 +74,11 @@ struct IceCreamHistory {
         defaults.set(iceCreamURLStrings as AnyObject, forKey: IceCreamHistory.userDefaultsKey)
     }
     
-    mutating func append(_ iceCream: IceCream) {
+    func append(_ iceCream: IceCream) {
         // Ensure that no duplicates are inserted into the history
         var newIceCreams = self.iceCreams.filter { $0 != iceCream }
         newIceCreams.append(iceCream)
-        iceCreams = newIceCreams
+        self.iceCreams = newIceCreams
     }
 
 }

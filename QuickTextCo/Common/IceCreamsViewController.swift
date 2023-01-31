@@ -48,7 +48,7 @@ class IceCreamsViewController: UICollectionViewController {
     }
     
     func reload() {
-        let reversedHistory = IceCreamHistory.load().reversed()
+        let reversedHistory = IceCreamHistory.shared.iceCreams.reversed()
         var items: [CollectionViewItem] = reversedHistory.map { .iceCream($0) }
         
         // Add `CollectionViewItem` that the user can tap to start building a new ice cream.

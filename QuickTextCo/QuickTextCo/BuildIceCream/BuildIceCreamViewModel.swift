@@ -10,7 +10,13 @@ import UIKit
 
 class BuildIceCreamViewModel {
     
+    private let iceCreamHistory: IceCreamHistoryProtocol
+    
     private(set) var prompt: String?
+    
+    init(iceCreamHistory: IceCreamHistoryProtocol = IceCreamHistory.shared) {
+        self.iceCreamHistory = iceCreamHistory
+    }
     
     var iceCream: IceCream? {
         didSet {
@@ -50,9 +56,8 @@ class BuildIceCreamViewModel {
         }
         
         if iceCream.isComplete {
-            var history = IceCreamHistory.load()
-            history.append(iceCream)
-            history.save()
+            iceCreamHistory.append(iceCream)
+            iceCreamHistory.save()
         }
         
         self.iceCream = iceCream
