@@ -57,6 +57,9 @@ class IceCreamsViewController: UICollectionViewController {
         }
         
         self.items = items
+        if isViewLoaded {
+            collectionView.reloadData()
+        }
     }
     
     override func viewDidLoad() {

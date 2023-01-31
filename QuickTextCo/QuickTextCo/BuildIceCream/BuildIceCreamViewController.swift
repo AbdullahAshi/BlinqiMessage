@@ -7,76 +7,55 @@ The view controller shown to select an ice-cream part for a partially built ice 
 
 import UIKit
 
+/// A delegate protocol for the `BuildIceCreamViewController` class.
+
+protocol BuildIceCreamViewControllerDelegate: AnyObject {
+    func doneAddingIceCream()
+}
+
 class BuildIceCreamViewController: UIViewController {
 
     // MARK: Properties
 
     static let storyboardIdentifier = "BuildIceCreamViewController"
     
+    @IBOutlet weak var promptLabel: UILabel!
+    @IBOutlet weak var iceCreamView: IceCreamView!
+    @IBOutlet weak var iceCreamViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    
     weak var delegate: BuildIceCreamViewControllerDelegate?
+    var viewModel: BuildIceCreamViewModel!
     
     var iceCream: IceCream? {
-        didSet {
-            guard let iceCream = iceCream else { return }
-            
-            // Determine the ice cream parts to show in the collection view.
-            if iceCream.base == nil {
-                iceCreamParts = Base.all.map { $0 }
-                prompt = NSLocalizedString("Select a base", comment: "")
-            } else if iceCream.scoops == nil {
-                iceCreamParts = Scoops.all.map { $0 }
-                prompt = NSLocalizedString("Add some scoops", comment: "")
-            } else if iceCream.topping == nil {
-                iceCreamParts = Topping.all.map { $0 }
-                prompt = NSLocalizedString("Finish with a topping", comment: "")
-            }
-        }
+        return viewModel.iceCream
     }
-    
-    /// An array of `IceCreamPart`s to show in the collection view.
-    
-    fileprivate var iceCreamParts = [IceCreamPart]() {
-        didSet {
-            // Update the collection view to show the new ice cream parts.
-            guard isViewLoaded else { return }
-            collectionView.reloadData()
-        }
-    }
-    
-    private var prompt: String?
-    
-    @IBOutlet weak var promptLabel: UILabel!
-    
-    @IBOutlet weak var iceCreamView: IceCreamView!
-    
-    @IBOutlet weak var iceCreamViewHeightConstraint: NSLayoutConstraint!
-
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
     // MARK: View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reload()
-        
     }
     
     func reload() {
+        guard isViewLoaded else { return }
         // Make sure the prompt and ice cream view are showing the correct information.
-        promptLabel.text = prompt
-        iceCreamView.iceCream = iceCream
+        promptLabel.text = viewModel.prompt
+        iceCreamView.iceCream = viewModel.iceCream
         
         // We want the collection view to decelerate faster than normal so comes to rest on a body part more quickly.
         collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
+        
+        collectionView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         // There is nothing to layout of there are no ice cream parts to pick from.
-        guard !iceCreamParts.isEmpty else { return }
+        guard !viewModel.iceCreamParts.isEmpty else { return }
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
             else { fatalError("Expected the collection view to have a UICollectionViewFlowLayout") }
         
@@ -84,7 +63,7 @@ class BuildIceCreamViewController: UIViewController {
         layout.itemSize.width = floor(view.bounds.size.width / 3.0)
 
         // Set the cell height using the aspect ratio of the ice cream part images.
-        let iceCreamPartImageSize = iceCreamParts[0].image.size
+        let iceCreamPartImageSize = viewModel.iceCreamParts[0].image.size
         guard iceCreamPartImageSize.width > 0 else { return }
         let imageAspectRatio = iceCreamPartImageSize.width / iceCreamPartImageSize.height
         
@@ -118,20 +97,16 @@ class BuildIceCreamViewController: UIViewController {
         let halfWidth = collectionView.bounds.size.width / 2.0
         guard let indexPath = layout.indexPathForVisibleItemClosest(to: collectionView.contentOffset.x + halfWidth) else { return }
         
-        // Call the delegate with the body part for the centered cell.
-        delegate?.buildIceCreamViewController(self, didSelect: iceCreamParts[indexPath.row])
+        guard let iceCream = iceCream else { return }
+        
+        let isComplete = viewModel.didSelectPartAndNotifyIfFinished(at: indexPath.row, for: iceCream)
+        
+        if isComplete {
+            delegate?.doneAddingIceCream()
+        } else {
+            reload()
+        }
     }
-
-}
-
-/// A delegate protocol for the `BuildIceCreamViewController` class.
-
-protocol BuildIceCreamViewControllerDelegate: AnyObject {
-
-    /// Called when the user taps to select an `IceCreamPart` in the `BuildIceCreamViewController`.
-
-    func buildIceCreamViewController(_ controller: BuildIceCreamViewController, didSelect iceCreamPart: IceCreamPart)
-
 }
 
 /// Extends `BuildIceCreamViewController` to conform to the `UICollectionViewDataSource` protocol.
@@ -139,7 +114,7 @@ protocol BuildIceCreamViewControllerDelegate: AnyObject {
 extension BuildIceCreamViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return iceCreamParts.count
+        return viewModel.iceCreamParts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -147,7 +122,7 @@ extension BuildIceCreamViewController: UICollectionViewDataSource {
                                                             for: indexPath as IndexPath) as? IceCreamPartCell
             else { fatalError("Unable to dequeue a BodyPartCell") }
 
-        let iceCreamPart = iceCreamParts[indexPath.row]
+        let iceCreamPart = viewModel.iceCreamParts[indexPath.row]
         cell.imageView.image = iceCreamPart.image
         
         return cell

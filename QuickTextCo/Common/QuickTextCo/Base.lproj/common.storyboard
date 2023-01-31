@@ -107,7 +107,7 @@
                         <outlet property="collectionViewHeightConstraint" destination="XVi-O5-9zv" id="4eV-Um-AsI"/>
                         <outlet property="iceCreamView" destination="JU6-B5-0Q9" id="f2J-pf-i7o"/>
                         <outlet property="iceCreamViewHeightConstraint" destination="1IM-gu-MjV" id="zxb-Vm-Foz"/>
-                        <outlet property="promptLabel" destination="VQE-bT-UvE" id="z48-mm-xGy"/>
+                        <outlet property="promptLabel" destination="VQE-bT-UvE" id="rpv-Oe-pa8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hrV-eu-om7" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -41,38 +41,10 @@ extension IceCreamsViewController: BuildIceCreamViewControllerDelegate {
         
         return message
     }
-
-    /// - Tag: InsertMessageInConversation
-    func buildIceCreamViewController(_ controller: BuildIceCreamViewController, didSelect iceCreamPart: IceCreamPart) {
-        guard var iceCream = controller.iceCream else { fatalError("Expected the controller to be displaying an ice cream") }
-
-        // Update the ice cream with the selected body part and determine a caption and description of the change.
-        var messageCaption: String
-        if let base = iceCreamPart as? Base {
-            iceCream.base = base
-            messageCaption = NSLocalizedString("Let's build an ice cream", comment: "")
-        } else if let scoops = iceCreamPart as? Scoops {
-            iceCream.scoops = scoops
-            messageCaption = NSLocalizedString("I added some scoops", comment: "")
-        } else if let topping = iceCreamPart as? Topping {
-            iceCream.topping = topping
-            messageCaption = NSLocalizedString("Our finished ice cream", comment: "")
-        } else {
-            fatalError("Unexpected type of ice cream part selected.")
-        }
-
-        // If the ice cream is complete, save it in the history.
-        if iceCream.isComplete {
-            var history = IceCreamHistory.load()
-            history.append(iceCream)
-            history.save()
-            self.navigationController?.popViewController(animated: true)
-            self.reload()
-            self.collectionView.reloadData()
-        } else {
-            controller.iceCream = iceCream
-            controller.reload()
-        }
+    
+    func doneAddingIceCream() {
+                    self.navigationController?.popViewController(animated: true)
+                    self.reload()
     }
     
     func instantiateBuildIceCreamController(with iceCream: IceCream) -> UIViewController {
@@ -81,9 +53,11 @@ extension IceCreamsViewController: BuildIceCreamViewControllerDelegate {
             as? BuildIceCreamViewController
             else { fatalError("Unable to instantiate a BuildIceCreamViewController from the storyboard") }
         
-        controller.iceCream = iceCream
         controller.delegate = self
-        
+        let viewModel = BuildIceCreamViewModel()
+        viewModel.iceCream = iceCream
+        controller.viewModel = viewModel
+                
         return controller
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		888237FE2988B1E7009F116F /* BuildIceCreamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888237FD2988B1E7009F116F /* BuildIceCreamViewModel.swift */; };
 		88F2137C297AD1FC0057067B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2137B297AD1FC0057067B /* AppDelegate.swift */; };
 		88F2137E297AD1FC0057067B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2137D297AD1FC0057067B /* SceneDelegate.swift */; };
 		88F21380297AD1FC0057067B /* MessageBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2137F297AD1FC0057067B /* MessageBuilderViewController.swift */; };
@@ -142,6 +143,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		888237FD2988B1E7009F116F /* BuildIceCreamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildIceCreamViewModel.swift; sourceTree = "<group>"; };
 		88F21378297AD1FC0057067B /* QuickTextCo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTextCo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F2137B297AD1FC0057067B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88F2137D297AD1FC0057067B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -240,6 +242,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		888237FC2988B1B8009F116F /* BuildIceCream */ = {
+			isa = PBXGroup;
+			children = (
+				88F2140429801D820057067B /* BuildIceCreamViewController.swift */,
+				888237FD2988B1E7009F116F /* BuildIceCreamViewModel.swift */,
+			);
+			path = BuildIceCream;
+			sourceTree = "<group>";
+		};
 		88F2136F297AD1FC0057067B = {
 			isa = PBXGroup;
 			children = (
@@ -267,7 +278,7 @@
 		88F2137A297AD1FC0057067B /* QuickTextCo */ = {
 			isa = PBXGroup;
 			children = (
-				88F2140429801D820057067B /* BuildIceCreamViewController.swift */,
+				888237FC2988B1B8009F116F /* BuildIceCream */,
 				88F2140E298020CE0057067B /* CompletedIceCreamViewController.swift */,
 				88F2140C29801E3D0057067B /* IceCreamPartCollectionViewLayout.swift */,
 				88F2140A29801E120057067B /* IceCreamView.swift */,
@@ -611,6 +622,7 @@
 				88F213FE29801CC70057067B /* IceCreamHistory.swift in Sources */,
 				88F2140129801CC70057067B /* QueryItemRepresentable.swift in Sources */,
 				88F213FD29801CC70057067B /* IceCream+Image.swift in Sources */,
+				888237FE2988B1E7009F116F /* BuildIceCreamViewModel.swift in Sources */,
 				88F2137C297AD1FC0057067B /* AppDelegate.swift in Sources */,
 				88F2140929801DC90057067B /* IceCreamCell.swift in Sources */,
 				88F2140F298020CE0057067B /* CompletedIceCreamViewController.swift in Sources */,
